@@ -1,65 +1,178 @@
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+:root {
+  --bg-primary: #f8fafc;        
+  --bg-card: #ffffff;           
+  --text-main: #0f172a;      
+  --text-muted: #64748b;        
+  --primary: #4f46e5;          
+  --primary-hover: #4338ca;    
+  --primary-light: #eef2ff;    
+  --border-color: #e2e8f0;      
+  --success: #10b981;           
+  --radius: 12px;               
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --transition: all 0.2s ease-in-out;
 }
 
-body{
-  background:#0f172a;
-  color:white;
-  font-family:Arial, Helvetica, sans-serif;
-  min-height:100vh;
-  padding:2rem;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.container{
-  max-width:900px;
-  margin:auto;
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  line-height: 1.5;
+  padding: 2rem 1rem;
 }
 
-h1{
-  margin-bottom:1rem;
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
 }
 
-textarea{
-  width:100%;
-  min-height:220px;
-  background:#111827;
-  color:white;
-  border:1px solid #334155;
-  border-radius:10px;
-  padding:1rem;
-  resize:vertical;
-  margin-bottom:1rem;
+h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
 }
 
-button{
-  background:#2563eb;
-  color:white;
-  border:none;
-  padding:1rem 1.5rem;
-  border-radius:10px;
-  cursor:pointer;
-  margin-bottom:1rem;
+.form-group {
+  margin-bottom: 1.5rem;
 }
 
-button:hover{
-  opacity:.9;
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
 }
 
-.result{
-  background:#111827;
-  border:1px solid #334155;
-  padding:1rem;
-  border-radius:10px;
-  white-space:pre-wrap;
-  line-height:1.6;
+select, textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-main);
+  transition: var(--transition);
+  outline: none;
 }
 
-select{
-  padding:.8rem;
-  margin-bottom:1rem;
-  border-radius:10px;
-  border:none;
+select:focus, textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+  margin-bottom: 1.5rem;
+}
+
+button {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--primary);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+#cv-file {
+  display: none;
+}
+
+/* Convertimos el label en la zona interactiva */
+.file-upload-label {
+  display: block;
+  border: 2px dashed var(--border-color);
+  padding: 2rem 1.5rem;
+  border-radius: var(--radius);
+  text-align: center;
+  cursor: pointer;
+  background-color: var(--bg-primary);
+  transition: var(--transition);
+}
+
+.file-upload-label:hover {
+  border-color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.file-upload-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.file-upload-text {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.file-upload-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Estado dinámico de carga del archivo */
+#file-status {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.result-container {
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.5rem;
+}
+
+.result-container h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-main);
+}
+
+.result {
+  background-color: var(--bg-primary);
+  padding: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  font-size: 0.95rem;
+  color: #334155;
+  min-height: 80px;
+  /* Mantiene los saltos de línea (\n) estructurales que devuelve Ollama */
+  white-space: pre-wrap; 
 }
